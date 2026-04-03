@@ -16,8 +16,10 @@ def attempt_ssh_login(target_ip, username, password):
     except paramiko.AuthenticationException:
         return False
     except Exception as e:
-        print(f"[!] Connection Error: {e}")
+        # print(f"[!] Connection Error: {e}")
         return None
+    finally:
+        client.close()
 
 def start_hammer(ip, user, wordlist_path, delay):
     #Goes through rockyou.txt
